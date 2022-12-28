@@ -32,14 +32,14 @@ public class MyLinkList<E extends Comparable<E>> implements Iterable{
         }
         size++;
     }
-    public void addLast(E object, MyNode next){
-        MyNode<E> newNode = new MyNode<>(object,next);
+    public void addLast(E object, MyNode nextNode){
+        
         if(first==null){
-            first=last= newNode;
+            first=last= nextNode;
         }
         else{
-        last.next = newNode;
-        last = newNode;
+        last.next = nextNode;
+        last = nextNode;
         }
         size++;
     }
@@ -181,7 +181,7 @@ public class MyLinkList<E extends Comparable<E>> implements Iterable{
         
         while(fast.next!=null&& fast!=null){
             slow = slow.next;
-            fast = fast.next;
+            fast = fast.next.next;
             if(slow==fast) return true;
         }
 
@@ -248,8 +248,8 @@ public class MyLinkList<E extends Comparable<E>> implements Iterable{
         myList3.addLast("b");
         myList3.addLast("c");
         myList3.addLast("d",myList3.getNode("a"));
-        System.out.println(myList3);
-        //System.out.println(myList3.hasLoop());
+        //System.out.println(myList3);
+        System.out.println(myList3.hasLoop());
 
 
         
