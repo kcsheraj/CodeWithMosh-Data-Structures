@@ -7,11 +7,15 @@ public class MyStack implements Iterable{
     int[] stack;
     int size;
     int topIndex;
+    int curMinValueIndex;
+    int prevMinValueIndex;
 
     public MyStack(){
         size = 10;
         stack = new int[10];
         int topIndex = 0;
+        curMinValueIndex = 0;
+        prevMinValueIndex = 0;
     }
 
     public void push(int x){
@@ -19,6 +23,10 @@ public class MyStack implements Iterable{
             expand();
         }
         stack[topIndex] = x;
+        if(x<stack[curMinValueIndex]){
+            prevMinValueIndex = curMinValueIndex;
+            curMinValueIndex = topIndex;
+        }
         topIndex++;
     }
     
@@ -38,6 +46,9 @@ public class MyStack implements Iterable{
             throw new IllegalStateException();
         }
         int poped = stack[topIndex-1];
+        if(poped==stack[curMinValueIndex]){
+            curMinValueIndex = prevMinValueIndex;
+        }
         stack[topIndex-1] = 0;
         topIndex--;
         return poped;
@@ -94,6 +105,13 @@ public class MyStack implements Iterable{
 
         return stackString;
     }
+    private int min() {
+        if(isEmpty()){
+            throw new IllegalStateException();
+        }
+        return stack[curMinValueIndex];
+    }
+
 
     public static void main(String[] args) {
         //this is a stack class that stores ints and is also Iterable
@@ -111,6 +129,19 @@ public class MyStack implements Iterable{
         // System.out.println(stackA.peek());
         // System.out.println(stackA.peek());
         // System.out.println(stackA.peek());
+
+        //Design a stack that supports push, pop and retrieving the minimum value in constant time. 
+        MyStack stackB = new MyStack();
+        stackB.push(5);
+        stackB.push(2);
+        stackB.push(10);
+        stackB.push(1);
+        stackB.push(1);
+        stackB.push(0);
+        stackB.pop();
+        System.out.println(stackB.min());
+        // System.out.println(stackB.pop());
+        // System.out.println(stackB.min());
     }
     
     
