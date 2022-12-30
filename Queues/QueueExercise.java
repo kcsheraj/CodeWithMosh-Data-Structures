@@ -26,7 +26,6 @@ public class QueueExercise {
         while(!stack.isEmpty()){
             queue.add(stack.pop());
         }
-
         
     }
 }
