@@ -20,6 +20,7 @@ public class MyQueueStack {
     }
 
     public int dequeue(){
+        if(s1.isEmpty() && s2.isEmpty()) throw new IllegalStateException();
         while(!s1.isEmpty()){
             s2.push(s1.pop());
         }
