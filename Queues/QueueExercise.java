@@ -49,7 +49,7 @@ public class QueueExercise {
         queue2.add(30);
         queue2.add(40);
         queue2.add(50);
-
+ 
         queue2 = reverseFirstKElements(queue2,3);
         
         System.out.println();
