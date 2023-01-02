@@ -41,10 +41,30 @@ public class HashTableExercises {
         return ans;
     }
 
+    private static char firstRepeatedCharacter(String str) {
+        Map<Character,Character> myMap= new HashMap<>();
+        for(int i=0; i<str.length(); i++){
+            char theChar = str.charAt(i);
+            if(myMap.containsKey(theChar)){
+                return theChar;
+            }
+            else{
+                myMap.put(theChar, theChar);
+            }
+        }
+
+        return Character.MIN_VALUE;
+    }
+
 
     public static void main(String[] args) {
         //find the first non Repeated Character
         System.out.println(firstNonRepeatedCharacterIndexOf("A Green Apple"));
         System.out.println(firstNonRepeatedCharacter("A Green Apple"));
+
+        //find the first repeated Character
+        System.out.println(firstRepeatedCharacter("A Green Apple"));
+
+
     }
 }
