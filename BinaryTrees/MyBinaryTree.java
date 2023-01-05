@@ -85,7 +85,45 @@ public class MyBinaryTree {
                 System.out.println(root.value);
     }
     
+    //height is the steps from root node to furthest leaf
+    public int height(){
+        return height(rootNode);
+    }
+    private int height(Node root){//individual leaf counts as height of 0
+        if(root==null) return -1;
+        if(root.leftChild == null && root.rightChild == null){//if leaf
+            return 0;
+        }
+        return 1+Math.max(height(root.leftChild), height(root.rightChild));
+    }
 
+    public int minOfNonOrderedBinaryTree(){
+        return minOfNonOrderedBinaryTree(rootNode);
+    }
+    private int minOfNonOrderedBinaryTree(Node root){
+        if(root.leftChild==null && root.rightChild==null) return root.value;
+
+        int lr = Math.min(minOfNonOrderedBinaryTree(root.leftChild),
+                        minOfNonOrderedBinaryTree(root.rightChild));
+        return Math.min(root.value, lr);
+    }
+ 
+    public boolean equals(MyBinaryTree otherTree){
+        if(otherTree==null) return false;
+        return traversePostOrder(rootNode,otherTree.rootNode);
+    }
+    private boolean traversePostOrder(Node root, Node otherRoot){
+        // left, root, right
+        if(root==null && otherRoot == null) return true;
+        if(root==null || otherRoot == null) return false;
+        if(root.value != otherRoot.value) return false;
+
+        if(root!=null && otherRoot!=null){
+        return traversePostOrder(root.leftChild,otherRoot.leftChild) && traversePostOrder(root.rightChild,otherRoot.rightChild);
+        }
+
+        return false;
+    }
     private class Node{
         private int value;
         private Node leftChild;
@@ -97,11 +135,10 @@ public class MyBinaryTree {
 
     public static void main(String[] args) {
         MyBinaryTree tree = new MyBinaryTree();
-        tree.insert(5);
-        tree.insert(4);
         tree.insert(7);
-        tree.insert(6);
-        tree.insert(8);
+        tree.insert(4);
+
+
 
         System.out.println(tree.find(6));
         tree.traversePreOrder();
@@ -109,6 +146,17 @@ public class MyBinaryTree {
         tree.traverseInOrder();
         System.out.println();
         tree.traversePostOrder();
+        System.out.println();
+
+        System.out.println(tree.height());
+
+        //System.out.println(tree.minOfNonOrderedBinaryTree());
+
+        MyBinaryTree tree2 = new MyBinaryTree();
+        tree2.insert(7);
+
+
+        System.out.println(tree.equals(tree2));
 
     }
     
