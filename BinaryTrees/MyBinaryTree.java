@@ -1,4 +1,7 @@
 package BinaryTrees;
+
+import java.util.ArrayList;
+
 public class MyBinaryTree {
     private Node rootNode;
 
@@ -144,22 +147,33 @@ public class MyBinaryTree {
     }
    
 
-    public void printNodesKDistance(int k) {
-        printNodesKDistance(rootNode, k, 0);
+    public ArrayList<Integer> printNodesKDistance(int k) {
+        ArrayList<Integer> list = new ArrayList();
+        printNodesKDistance(rootNode, k, 0, list);
+        return list;
     }
     //note: if you set distance=k then decrement distance you dont need k as pramater
-    private void printNodesKDistance(Node node, int k, int distance){
+    private void printNodesKDistance(Node node, int k, int distance, ArrayList<Integer> list){
         if(node.leftChild==null && node.rightChild==null){
-            if(distance==k) System.out.println(node.value);
+            if(distance==k) list.add(node.value);
             return;
         }
         if(distance==k){
-            System.out.println(node.value);
+            list.add(node.value);
             return;
         }
-        if(node.leftChild!=null)printNodesKDistance(node.leftChild, k, distance+1);
-        if(node.rightChild!=null)printNodesKDistance(node.rightChild, k, distance+1);
+        if(node.leftChild!=null)printNodesKDistance(node.leftChild, k, distance+1,list);
+        if(node.rightChild!=null)printNodesKDistance(node.rightChild, k, distance+1,list);
     }
+
+    public void traverseLevelOrder(){
+        for(int i=0; i<= height(); i++){
+            for(int value: printNodesKDistance(i)){
+                System.out.print(value +" ");
+            }
+        }
+    }
+
     private class Node{
         private int value;
         private Node leftChild;
@@ -219,7 +233,9 @@ public class MyBinaryTree {
         tree3.insert(3);
         tree3.insert(8);
         System.out.println();
-        tree3.printNodesKDistance(3);
+        tree3.printNodesKDistance(3 );
+
+        tree3.traverseLevelOrder();
 
         
     }
