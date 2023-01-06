@@ -97,6 +97,7 @@ public class MyBinaryTree {
         return 1+Math.max(height(root.leftChild), height(root.rightChild));
     }
 
+    //min of binary not-search tree
     public int minOfNonOrderedBinaryTree(){
         return minOfNonOrderedBinaryTree(rootNode);
     }
@@ -111,7 +112,7 @@ public class MyBinaryTree {
     public boolean equals(MyBinaryTree otherTree){
         if(otherTree==null) return false;
         return traversePostOrder(rootNode,otherTree.rootNode);
-    }
+    }  
     private boolean traversePostOrder(Node root, Node otherRoot){
         // left, root, right
         if(root==null && otherRoot == null) return true;
@@ -123,6 +124,23 @@ public class MyBinaryTree {
         }
 
         return false;
+    }
+    
+    //used to mess up a binary search tree
+    public void swapRoot(){
+        Node temp = rootNode.leftChild;
+        rootNode.leftChild = rootNode.rightChild;
+        rootNode.rightChild = temp;
+
+    }
+    public boolean valadateBinarySearchTree(){
+        return valadateBinarySearchTree(rootNode, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+    private boolean valadateBinarySearchTree(Node node, int minVal, int maxVal) {
+        if(node == null) return true;
+        if(node.value<minVal || node.value>maxVal) return false;
+        return valadateBinarySearchTree(node.leftChild,minVal,node.value-1) //-1 and plus 1 reqired
+            && valadateBinarySearchTree(node.rightChild,node.value+1,maxVal);
     }
     private class Node{
         private int value;
@@ -137,7 +155,11 @@ public class MyBinaryTree {
         MyBinaryTree tree = new MyBinaryTree();
         tree.insert(7);
         tree.insert(4);
-
+        tree.insert(9);
+        tree.insert(1);
+        tree.insert(6);
+        tree.insert(8);
+        tree.insert(10); 
 
 
         System.out.println(tree.find(6));
@@ -154,10 +176,19 @@ public class MyBinaryTree {
 
         MyBinaryTree tree2 = new MyBinaryTree();
         tree2.insert(7);
-
+        tree2.insert(4);
+        tree2.insert(9);
+        tree2.insert(1);
+        tree2.insert(6);
+        tree2.insert(8) ;
+        tree2.insert(10);
 
         System.out.println(tree.equals(tree2));
 
+        System.out.println();
+        System.out.println(tree2.valadateBinarySearchTree());
+        tree2.swapRoot();
+        System.out.println(tree2.valadateBinarySearchTree());
     }
     
 }
