@@ -174,6 +174,18 @@ public class MyBinaryTree {
         }
     }
 
+    public int size(){
+        return size(rootNode);
+    }
+    private int size(Node node){
+        if(node.leftChild==null && node.rightChild==null) return 1;
+        int l = 0;
+        int r = 0;
+        if(node.leftChild!=null) l = size(node.leftChild);
+        if(node.rightChild!=null) r = size(node.rightChild);
+        return 1+l+r;
+    }
+
     private class Node{
         private int value;
         private Node leftChild;
@@ -236,7 +248,8 @@ public class MyBinaryTree {
         tree3.printNodesKDistance(3 );
 
         tree3.traverseLevelOrder();
-
+        System.out.println();
+        System.out.println(tree3.size());
         
     }
     
