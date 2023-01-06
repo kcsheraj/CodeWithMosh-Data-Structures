@@ -142,6 +142,24 @@ public class MyBinaryTree {
         return valadateBinarySearchTree(node.leftChild,minVal,node.value-1) //-1 and plus 1 reqired
             && valadateBinarySearchTree(node.rightChild,node.value+1,maxVal);
     }
+   
+
+    public void printNodesKDistance(int k) {
+        printNodesKDistance(rootNode, k, 0);
+    }
+    //note: if you set distance=k then decrement distance you dont need k as pramater
+    private void printNodesKDistance(Node node, int k, int distance){
+        if(node.leftChild==null && node.rightChild==null){
+            if(distance==k) System.out.println(node.value);
+            return;
+        }
+        if(distance==k){
+            System.out.println(node.value);
+            return;
+        }
+        if(node.leftChild!=null)printNodesKDistance(node.leftChild, k, distance+1);
+        if(node.rightChild!=null)printNodesKDistance(node.rightChild, k, distance+1);
+    }
     private class Node{
         private int value;
         private Node leftChild;
@@ -187,8 +205,23 @@ public class MyBinaryTree {
 
         System.out.println();
         System.out.println(tree2.valadateBinarySearchTree());
-        tree2.swapRoot();
-        System.out.println(tree2.valadateBinarySearchTree());
+        //tree2.swapRoot();
+        //System.out.println(tree2.valadateBinarySearchTree());
+
+
+        MyBinaryTree tree3 = new MyBinaryTree();
+        tree3.insert(20);
+        tree3.insert(10);
+        tree3.insert(30);
+        tree3.insert(6);
+        tree3.insert(21);
+        tree3.insert(4) ;
+        tree3.insert(3);
+        tree3.insert(8);
+        System.out.println();
+        tree3.printNodesKDistance(3);
+
+        
     }
     
 }
