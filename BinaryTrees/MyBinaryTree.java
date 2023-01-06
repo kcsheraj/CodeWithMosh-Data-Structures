@@ -186,6 +186,21 @@ public class MyBinaryTree {
         return 1+l+r;
     }
 
+    public int countLeaves(){
+        return countLeaves(rootNode);
+    }
+    private int countLeaves(Node node){
+        if(node.leftChild==null && node.rightChild==null){
+            return 1;
+        }
+        int l  = 0;
+        int r = 0;
+        if(node.leftChild!=null) l = countLeaves(node.leftChild);
+        if(node.rightChild!=null) r = countLeaves(node.rightChild);
+        
+        return l+r;
+    }
+
     private class Node{
         private int value;
         private Node leftChild;
@@ -226,6 +241,7 @@ public class MyBinaryTree {
         tree2.insert(6);
         tree2.insert(8) ;
         tree2.insert(10);
+        
 
         System.out.println(tree.equals(tree2));
 
@@ -248,8 +264,12 @@ public class MyBinaryTree {
         tree3.printNodesKDistance(3 );
 
         tree3.traverseLevelOrder();
+
         System.out.println();
         System.out.println(tree3.size());
+
+        System.out.println();
+        System.out.println(tree2.countLeaves());
         
     }
     
