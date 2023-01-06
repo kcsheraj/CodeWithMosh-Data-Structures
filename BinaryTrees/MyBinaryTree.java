@@ -217,6 +217,24 @@ public class MyBinaryTree {
         return Math.max(lr,node.value);
     }
 
+    public boolean contains(int value){
+        return contains(rootNode, value);
+    }
+    private boolean contains(Node node, int value){
+        if(node.leftChild==null && node.rightChild==null){
+            if(node.value == value) return true;
+            else return false;
+        }
+        if(node.value == value) return true;
+        else{
+            boolean l = false;
+            boolean r = false;
+            if(node.leftChild!=null) l = contains(node.leftChild, value);
+            if(node.rightChild!=null) r = contains(node.rightChild, value);
+            return l || r;
+        }
+    }
+
     private class Node{
         private int value;
         private Node leftChild;
@@ -291,6 +309,8 @@ public class MyBinaryTree {
         System.out.println();
         System.out.println(tree.max());
         
+        System.out.println();
+        System.out.println(tree3.contains(10));
     }
     
 }
