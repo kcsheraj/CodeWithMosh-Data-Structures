@@ -104,7 +104,7 @@ public class MyBinaryTree {
     public int minOfNonOrderedBinaryTree(){
         return minOfNonOrderedBinaryTree(rootNode);
     }
-    private int minOfNonOrderedBinaryTree(Node root){
+    private int minOfNonOrderedBinaryTree(Node root){//not this would not work for an un balanced tree
         if(root.leftChild==null && root.rightChild==null) return root.value;
 
         int lr = Math.min(minOfNonOrderedBinaryTree(root.leftChild),
@@ -201,6 +201,22 @@ public class MyBinaryTree {
         return l+r;
     }
 
+    //maximum value in a binary tree using recursion.
+    public int max(){
+        return max(rootNode,Integer.MIN_VALUE);
+    }
+    private int max(Node node, int max){//this works for an unbalanced tree btw :)
+        if(node.leftChild==null && node.rightChild==null){
+            return Math.max(max, node.value);
+        }
+        int l = Integer.MIN_VALUE;
+        int r = Integer.MIN_VALUE;
+        if(node.leftChild!=null) l = max(node.leftChild,max);
+        if(node.rightChild!=null) r = max(node.rightChild, max);
+        int lr = Math.max(l, r);
+        return Math.max(lr,node.value);
+    }
+
     private class Node{
         private int value;
         private Node leftChild;
@@ -270,6 +286,10 @@ public class MyBinaryTree {
 
         System.out.println();
         System.out.println(tree2.countLeaves());
+        
+
+        System.out.println();
+        System.out.println(tree.max());
         
     }
     
