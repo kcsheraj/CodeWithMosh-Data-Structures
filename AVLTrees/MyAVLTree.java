@@ -4,28 +4,20 @@ public class MyAVLTree {
 
      //insert recursively
      public void insert(int value){
-        insert(rootNode,value);
+        rootNode = insert(rootNode,value);
      }
 
-     private void insert(AVLNode node, int value){
-        if(node==null){
-            rootNode = new AVLNode(value);
-            return;
+     private AVLNode insert(AVLNode node, int value){
+        if(node == null){
+            return new AVLNode(value);
         }
-        if(value>node.value){
-            if(node.rightChild==null){
-                node.rightChild = new AVLNode(value);
-                return;
-            }
-            insert(node.rightChild, value);
+        if(value<node.value){
+            node.leftChild = insert(node.leftChild, value);
         }
         else{
-            if(node.leftChild==null){
-                node.leftChild = new AVLNode(value);
-                return;
-            }
-            insert(node.leftChild, value);
+            node.rightChild = insert(node.rightChild, value);
         }
+        return node;
 
     }
 
