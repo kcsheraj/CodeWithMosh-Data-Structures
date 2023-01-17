@@ -39,12 +39,12 @@ public class MyArrayList<E extends Comparable<E>> implements Iterable<E>{
     }
 
     private void expand(){//expands by 3
-        // E[] expanded =(E[])(new Comparable[innerArray.length + 3]);
-        // for(int i=0; i<innerArray.length; i++){
-        //     expanded[i] = innerArray[i];
-        // }
+        E[] expanded =(E[])(new Comparable[innerArray.length + 3]);
+        for(int i=0; i<innerArray.length; i++){
+            expanded[i] = innerArray[i];
+        }
 
-        // this.innerArray = expanded;
+        this.innerArray = expanded;
     }
 
     public void sort(){
@@ -88,43 +88,44 @@ public class MyArrayList<E extends Comparable<E>> implements Iterable<E>{
 
 
     public static void main(String[] args) {
-        //  MyArrayList<Integer> theList= new MyArrayList<>(3);
-        //  theList.insert(1);
-        //  theList.insert(2);
-        //  theList.insert(3);
-        //  theList.insert(0);
-        // System.out.println(theList);
+         MyArrayList<Integer> theList= new MyArrayList<>(3);
+         theList.insert(1);
+         theList.insert(2);
+         theList.insert(3);
+         theList.insert(0);
+        System.out.println(theList);
 
-        //  theList.removeAt(1);
-        // System.out.println(theList);
+         theList.removeAt(1);
+        System.out.println(theList);
 
-        //  System.out.println(theList.IndexOf(0));
+         System.out.println(theList.IndexOf(0));
         
-        // System.out.println(theList);
-        // System.out.println("");
-        //  for(Integer x: theList){
-        //      System.out.println(x);
-        //  }
+        System.out.println(theList);
+        System.out.println("");
+         for(Integer x: theList){
+             System.out.println(x);
+         }
 
-        //  theList.insert(1);
-        //  theList.insert(2);
-        //  theList.insert(3);
-        //  theList.insert(0);
+         theList.insert(1);
+         theList.insert(2);
+         theList.insert(3);
+         theList.insert(0);
 
-        //  System.out.println(theList);
+         System.out.println(theList);
 
-         MyArrayList<Integer> theList2 = new MyArrayList<>(4);
-         theList2.insert(4);
-         theList2.insert(3);
-         theList2.insert(1);
-         theList2.insert(2);
+         //COMMENT OUT expand method before using this
+        //  MyArrayList<Integer> theList2 = new MyArrayList<>(4);
+        //  theList2.insert(4);
+        //  theList2.insert(3);
+        //  theList2.insert(1);
+        //  theList2.insert(2);
 
 
-         System.out.println(theList2);
+        //  System.out.println(theList2);
 
-         theList2.sort();
+        //  theList2.sort();
 
-         System.out.println(theList2);
+        //  System.out.println(theList2);
 
 
     }
