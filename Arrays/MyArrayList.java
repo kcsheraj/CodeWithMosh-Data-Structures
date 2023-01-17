@@ -48,7 +48,7 @@ public class MyArrayList<E extends Comparable<E>> implements Iterable<E>{
     }
 
     public void sort(){
-        Arrays.sort(innerArray);
+        Arrays.sort(innerArray,0,currIndex);
     }
 
     public String toString(){
@@ -113,19 +113,19 @@ public class MyArrayList<E extends Comparable<E>> implements Iterable<E>{
 
          System.out.println(theList);
 
-         //COMMENT OUT expand method before using this
-        //  MyArrayList<Integer> theList2 = new MyArrayList<>(4);
-        //  theList2.insert(4);
-        //  theList2.insert(3);
-        //  theList2.insert(1);
-        //  theList2.insert(2);
+
+         MyArrayList<Integer> theList2 = new MyArrayList<>(4);
+         theList2.insert(4);
+         theList2.insert(3);
+         theList2.insert(1);
+         theList2.insert(2);
 
 
-        //  System.out.println(theList2);
+         System.out.println(theList2);
 
-        //  theList2.sort();
+         theList2.sort();
 
-        //  System.out.println(theList2);
+         System.out.println(theList2);
 
 
     }
